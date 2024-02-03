@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+Форматирование даты публикации
+===
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Есть страница, содержащая список видеозаписей. 
+У каждого блока есть дата публикации. 
 
-Currently, two official plugins are available:
+![Relative Time](./assets/time.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+В данный момент выводится просто текущее значение. Пример: `2017-09-01 14:15:10`. 
+Решено изменять представление даты следующим образом в зависимости от его значения:
+`12 минут назад`, если прошло меньше часа, `5 часов назад`, если прошло больше часа, `X дней назад`, если больше суток.
 
-## Expanding the ESLint configuration
+## Реализация
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Используя HOC, обернуть `DateTime` в компонент `DateTimePretty` так, чтобы он преобразовывал дату в нужный вид.
 
-- Configure the top-level `parserOptions` property like this:
+Воспользуйтесь готовым файлом `App.js` и стилями `css/index.css` из каталога в качестве отправной точки. Замените ими те, что создаются в create-react-app.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Для работы с датой и временем можете воспользоваться библиотекой Moment.js.
